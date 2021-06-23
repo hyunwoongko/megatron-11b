@@ -49,7 +49,7 @@ model = InferenceEngine(model, mp_size=8, replace_method='auto').module
 inputs = "Kevin is"
 inputs = tokenizer(inputs, return_tensors="pt")["input_ids"].cuda()
 
-output = model.generate(inputs, num_beams=5, no_repeat_ngram_size=4, repetition_penalty=1.4)
+output = model.generate(inputs, num_beams=5, no_repeat_ngram_size=4, repetition_penalty=1.2)
 print(tokenizer.batch_decode(output))
 ```
 - And do an inference with the command below.
@@ -62,4 +62,3 @@ deepspeed --num_gpus=8 inference.py
 ## References
 - https://github.com/pytorch/fairseq/tree/master/examples/megatron_11b
 - https://github.com/huggingface/transformers/pull/10301
-- https://github.com/microsoft/DeepSpeed/pull/1168
