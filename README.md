@@ -42,7 +42,7 @@ from deepspeed import InferenceEngine
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
 model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B").half()
 
-model = InferenceEngine(model, mp_size=2, replace_method='auto')
+model = InferenceEngine(model, mp_size=8, replace_method='auto')
 
 inputs = "Kevin is"
 inputs = tokenizer(inputs, return_tensors="pt")["input_ids"].cuda()
@@ -52,7 +52,7 @@ print(tokenizer.batch_decode(output))
 ```
 - And do an inference with the command below.
 ```console
-deepspeed --num_gpus=4 inference.py
+deepspeed --num_gpus=8 inference.py
 ```
 <br>
 
