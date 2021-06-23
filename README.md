@@ -41,8 +41,7 @@ from deepspeed import InferenceEngine
 
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
 model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B").half()
-
-model = InferenceEngine(model, mp_size=8, replace_method='auto')
+model = InferenceEngine(model, mp_size=8, replace_method='auto').module
 
 inputs = "Kevin is"
 inputs = tokenizer(inputs, return_tensors="pt")["input_ids"].cuda()
