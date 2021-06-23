@@ -18,12 +18,23 @@
 from typing import TYPE_CHECKING
 
 from transformers.file_utils import _BaseLazyModule, is_tokenizers_available, is_torch_available
+from megatron_11b.modeling_megatron import (
+    MegatronModel,
+    MegatronForCausalLM,
+    MegatronForSequenceClassification,
+    MegatronPreTrainedModel,
+    MegatronConfig,
+)
 
-
-__all__ = [MegatronForCausalLM, MegatronForSequenceClassification, MegatronModel, MegatronPreTrainedModel]
+__all__ = [
+    MegatronForCausalLM, MegatronForSequenceClassification, MegatronModel,
+    MegatronPreTrainedModel, MegatronConfig
+]
 
 _import_structure = {
-    "configuration_megatron": ["MEGATRON_PRETRAINED_CONFIG_ARCHIVE_MAP", "MegatronConfig"],
+    "configuration_megatron": [
+        "MEGATRON_PRETRAINED_CONFIG_ARCHIVE_MAP", "MegatronConfig"
+    ],
     "tokenization_megatron": ["MegatronTokenizer"],
 }
 
@@ -38,7 +49,6 @@ if is_torch_available():
         "MegatronModel",
         "MegatronPreTrainedModel",
     ]
-
 
 if TYPE_CHECKING:
     from .configuration_megatron import MEGATRON_PRETRAINED_CONFIG_ARCHIVE_MAP, MegatronConfig
@@ -55,7 +65,6 @@ if TYPE_CHECKING:
             MegatronModel,
             MegatronPreTrainedModel,
         )
-
 
 else:
     import importlib

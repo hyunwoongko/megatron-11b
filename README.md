@@ -1,29 +1,31 @@
-# Megatron LM
+# Megatron 11B
 - Porting of Megatron LM 11B model published on facebook on Huggingface Transformers.
 - This repo contains the model's code, checkpoints and deepspeed parallelization examples.
 <br><br>
   
 ## Installation
 ```console
-pip install megatron-lm
+pip install megatron-11b
 ```
 <br>
 
 ## Usage
 ### 1. Tokenizer
 - The usage of tokenizer is the same as other tokenizers of the existing Huggingface.
+
 ```python
-from megatron_lm import MegatronTokenizer
+from megatron_11b import MegatronTokenizer
 
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
-tokens = tokenizer.encode("hello. My name is Kevin.")
+tokens = tokenizer.encode("Kevin is")
 ```
 <br>
 
 ### 2. Model
 - We currently support the CausalLM model and the SequenceClassification model.
+
 ```python
-from megatron_lm import MegatronForCausalLM, MegatronForSequenceClassification
+from megatron_11b import MegatronForCausalLM, MegatronForSequenceClassification
 
 model_clm = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B")
 model_clf = MegatronForSequenceClassification.from_pretrained("hyunwoongko/megatron-11B")
@@ -32,8 +34,9 @@ model_clf = MegatronForSequenceClassification.from_pretrained("hyunwoongko/megat
 
 ### 3. Parallelism 
 - Intra-layer model parallelization can be performed using DeepSpeed's InferenceEngine.
+
 ```python
-from megatron_lm import MegatronForCausalLM, MegatronTokenizer
+from megatron_11b import MegatronForCausalLM, MegatronTokenizer
 from deepspeed import InferenceEngine
 import torch.distributed as dist
 
@@ -47,12 +50,12 @@ model = InferenceEngine(
 ).module
 
 tokens = tokenizer.encode(
-    "Hello. My name is Kevin. I was", 
+    "Kevin is",
     return_tensors="pt",
 ).cuda()
 
 output = model.generate(
-    tokens, num_beams=5, max_length=40,
+    tokens, num_beams=5, max_length=40, no_repeat_ngram_size=4, repetition_penalty=1.2,
 )
 
 if dist.get_rank() == 0:

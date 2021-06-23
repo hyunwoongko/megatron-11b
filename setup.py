@@ -4,7 +4,7 @@ with open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='megatron-lm',
+    name='megatron-11b',
     version='1.0',
     description='Megatron LM 11B on Huggingface Transformers',
     long_description=long_description,

@@ -29,7 +29,7 @@ from fairseq.dataclass.utils import convert_namespace_to_omegaconf, overwrite_ar
 from fairseq.models.transformer_lm import TransformerLanguageModel
 from packaging import version
 
-from megatron_lm import MegatronConfig, MegatronForCausalLM, MegatronTokenizer
+from megatron_11b import MegatronConfig, MegatronForCausalLM, MegatronTokenizer
 from transformers.utils import logging
 
 

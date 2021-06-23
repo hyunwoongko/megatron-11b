@@ -38,7 +38,7 @@ from transformers.modeling_outputs import (
 )
 from transformers.modeling_utils import PreTrainedModel
 from transformers.utils import logging
-from megatron_lm.configuration_megatron import MegatronConfig
+from megatron_11b.configuration_megatron import MegatronConfig
 
 
 logger = logging.get_logger(__name__)
@@ -1138,7 +1138,7 @@ class MegatronForCausalLM(MegatronPreTrainedModel):
 
         Example::
 
-            >>> from megatron_lm import MegatronTokenizer, MegatronForCausalLM
+            >>> from megatron_11b import MegatronTokenizer, MegatronForCausalLM
 
             >>> tokenizer = MegatronTokenizer.from_pretrained('megatron-11b')
             >>> model = MegatronForCausalLM.from_pretrained('megatron-11b', add_cross_attention=False)
