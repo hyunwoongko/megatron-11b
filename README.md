@@ -19,6 +19,9 @@ from megatron_11b import MegatronTokenizer
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
 tokens = tokenizer.encode("Kevin is")
 ```
+```
+[0, 21910, 16, 2]
+```
 <br>
 
 ### 2. Model
