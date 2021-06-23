@@ -38,28 +38,17 @@ model_clf = MegatronForSequenceClassification.from_pretrained("hyunwoongko/megat
 ```python
 from megatron_11b import MegatronForCausalLM, MegatronTokenizer
 from deepspeed import InferenceEngine
-import torch.distributed as dist
 
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
-model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B")
+model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B").half()
 
-model = InferenceEngine(
-    model=model,
-    mp_size=4,
-    replace_method="auto",
-).module
+model = InferenceEngine(model, mp_size=2, replace_method='auto')
 
-tokens = tokenizer.encode(
-    "Kevin is",
-    return_tensors="pt",
-).cuda()
+inputs = "Kevin is"
+inputs = tokenizer(inputs, return_tensors="pt")["input_ids"].cuda()
 
-output = model.generate(
-    tokens, num_beams=5, max_length=40, no_repeat_ngram_size=4, repetition_penalty=1.2,
-)
-
-if dist.get_rank() == 0:
-    print(output)
+output = model.generate(inputs, num_beams=5, no_repeat_ngram_size=4, repetition_penalty=1.4)
+print(tokenizer.batch_decode(output))
 ```
 - And do an inference with the command below.
 ```console
