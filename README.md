@@ -1,6 +1,6 @@
 # Megatron 11B
 - Porting of Megatron LM 11B model published on facebook on Huggingface Transformers.
-- This repo contains the model's code, checkpoints and deepspeed parallelization examples.
+- This repo contains the model's code, checkpoints and parallelization examples.
 <br><br>
   
 ## Installation
