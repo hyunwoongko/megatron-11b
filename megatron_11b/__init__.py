@@ -31,6 +31,12 @@ __all__ = [
     MegatronPreTrainedModel, MegatronConfig
 ]
 
+try:
+    from megatron_11b.megatron_policy import MegatronPolicy
+    __all__ += [MegatronPolicy]
+except Exception as e:
+    pass
+
 _import_structure = {
     "configuration_megatron": [
         "MEGATRON_PRETRAINED_CONFIG_ARCHIVE_MAP", "MegatronConfig"
