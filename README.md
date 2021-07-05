@@ -42,7 +42,7 @@ model_clf = MegatronForSequenceClassification.from_pretrained("hyunwoongko/megat
 from megatron_11b import MegatronForCausalLM, MegatronTokenizer
 
 tokenizer = MegatronTokenizer.from_pretrained("hyunwoongko/megatron-11B")
-model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B").half()
+model = MegatronForCausalLM.from_pretrained("hyunwoongko/megatron-11B").half().cuda()
 
 inputs = "Kevin is"
 inputs = tokenizer.encode(inputs, return_tensors="pt").cuda()[:, :-1]  # exclude EOS
