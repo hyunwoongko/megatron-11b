@@ -1,4 +1,4 @@
-from parallelformers.polices.base import Policy, Layer
+from parallelformers.policies.base import Policy, Layer
 from parallelformers.utils.dist_utils import AllReduceLinear
 from megatron_11b.modeling_megatron import MegatronDecoderLayer
 

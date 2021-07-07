@@ -5,7 +5,7 @@ with open('README.md', encoding='utf-8') as f:
 
 setup(
     name='megatron-11b',
-    version='1.0',
+    version='1.1',
     description='Megatron LM 11B on Huggingface Transformers',
     long_description=long_description,
     long_description_content_type='text/markdown',
