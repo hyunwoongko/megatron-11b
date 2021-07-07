@@ -12,7 +12,7 @@ class MegatronPolicy(Policy):
             "self_attn.embed_dim": config.d_model // world_size,
 
             # 2. reduce number of heads
-            "self_attn.num_heads": config.encoder_attention_heads // world_size,
+            "self_attn.num_heads": config.decoder_attention_heads // world_size,
         }
 
     @staticmethod
